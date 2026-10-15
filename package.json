@@ -1,6 +1,6 @@
 {
   "name": "dsh-bg-panel",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "private": true,
   "type": "module",
   "description": "背景自定义面板：侧边栏列表入口，支持导入图片 / GIF / 视频做整页背景，带等比预览、裁剪器、历史图库，文件存在宿主目录里。",
