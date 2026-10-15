@@ -185,6 +185,15 @@ dsh plugin --profile desktop add github:theroi/dsh-bg-panel
 当场被发现才没进到宿主里。
 
 
+## 贡献者
+
+- [@theroi](https://github.com/theroi) — 作者
+- [@LANXI716](https://github.com/LANXI716)（蓝鲸）— 视频控制（循环 / 静音 / 播放速度）、GIF 帧率上限项、面板底色与深色模式文字
+
+欢迎 PR 与想法：有想改的地方直接开 Issue 或 Discussion 就行。
+
+---
+
 ## 卸载
 
 ```powershell
