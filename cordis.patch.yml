@@ -1,0 +1,4 @@
+# 本 bundle 向 Web 插件名册插入一行；界面全在 client.js，宿主半边是空实现。
+- insert:
+    - id: bg-panel
+      name: 'dsh-bg-panel'

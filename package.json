@@ -1,0 +1,55 @@
+{
+  "name": "dsh-bg-panel",
+  "version": "0.7.2",
+  "private": true,
+  "type": "module",
+  "description": "背景自定义面板：侧边栏列表入口，支持导入图片 / GIF / 视频做整页背景，带等比预览、裁剪器、历史图库，文件存在宿主目录里。",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "icon": "./icon.svg",
+  "files": [
+    "index.js",
+    "client.js",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md",
+    "locale"
+  ],
+  "meta": {
+    "title": "背景自定义面板",
+    "description": "导入图片 / GIF / 视频做整页背景，带历史图库与待应用预览。"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-layout"
+      ]
+    }
+  },
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "theme",
+    "wallpaper",
+    "background"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/<your-name>/dsh-bg-panel.git"
+  },
+  "bugs": {
+    "url": "https://github.com/<your-name>/dsh-bg-panel/issues"
+  },
+  "homepage": "https://github.com/<your-name>/dsh-bg-panel#readme"
+}
