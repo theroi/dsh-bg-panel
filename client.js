@@ -543,6 +543,9 @@ window.__ModuleLoader__.load({
       '.dbp-h{font-size:14px;font-weight:600;margin:2px 0 0;}',
       // 整个插件面板：30% 白底
       '.dbp-root{background-color:rgba(255,255,255,.30);border-radius:10px;}',
+      '.dbp-zoom{color:#fff !important;}',   // 预览里的缩放读数：固定白色，不随浅色模式变灰
+      // 浅色模式：文字 90% 灰（深色模式仍为白；红色提示与单独设色的元素不受影响）
+      'body:not([data-ds-dark-theme]) .dbp-root,html:not([data-ds-dark-theme]) .dbp-root{color:#e6e6e6 !important;}',
       // 深色模式：白底 → 60% 灰（透明度不变）
       'body[data-ds-dark-theme] .dbp-root,html[data-ds-dark-theme] .dbp-root{background-color:rgba(153,153,153,.30) !important;}',
       'body[data-ds-dark-theme] .dbp-drop,html[data-ds-dark-theme] .dbp-drop{background-color:rgba(153,153,153,.45) !important;}',
@@ -1312,7 +1315,7 @@ window.__ModuleLoader__.load({
           disabled: cfg.fit !== 'cover',
           onChange: function (e) { setDraft(Object.assign({}, eff, { zoom: Number(e.target.value) })); },
           }),
-          h('span', { className: 'dbp-tip', key: 't' }, '缩放 ' + (eff.zoom || 1).toFixed(2) + '×'),
+          h('span', { className: 'dbp-tip dbp-zoom', key: 't' }, '缩放 ' + (eff.zoom || 1).toFixed(2) + '×'),
           ]),
         }),
 
