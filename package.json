@@ -20,8 +20,8 @@
     "locale"
   ],
   "meta": {
-    "title": "背景自定义面板",
-    "description": "导入图片 / GIF / 视频做整页背景，带历史图库与待应用预览。"
+    "title": "个性化（背景自定义）",
+    "description": "DSH 个性化插件：自定义背景 + 半透明玻璃 + 主题色，支持裁剪、历史、深浅色自适应背景明暗。"
   },
   "dsh": {
     "bundle": {
@@ -39,17 +39,21 @@
   "keywords": [
     "dsh",
     "deepseek-harness",
+    "dsh-plugin",
+    "dsh-community",
     "plugin",
     "theme",
     "wallpaper",
-    "background"
+    "background",
+    "个性化",
+    "背景"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/<your-name>/dsh-bg-panel.git"
+    "url": "https://github.com/theroi/dsh-bg-panel.git"
   },
   "bugs": {
-    "url": "https://github.com/<your-name>/dsh-bg-panel/issues"
+    "url": "https://github.com/theroi/dsh-bg-panel/issues"
   },
-  "homepage": "https://github.com/<your-name>/dsh-bg-panel#readme"
+  "homepage": "https://github.com/theroi/dsh-bg-panel#readme"
 }

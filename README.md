@@ -1,5 +1,18 @@
 # dsh-bg-panel
 
+
+## 在 DSH 社区找到它
+
+| 渠道 | 关键词 / 地址 |
+| --- | --- |
+| GitHub | [theroi/dsh-bg-panel](https://github.com/theroi/dsh-bg-panel) |
+| 插件名 | `dsh-bg-panel` |
+| 社区检索关键词 | `dsh-plugin` · `dsh-community` · `个性化` · `背景` · `主题` |
+
+> 侧栏入口名：**个性化**（面板标题：自定义背景）。
+
+---
+
 DSH（DeepSeek Harness）个性化插件：**自定义背景 + 半透明玻璃 + 主题色**。
 
 ## 安装
@@ -13,7 +26,7 @@ dsh plugin --profile desktop add link:/path/to/dsh-bg-panel
 从 GitHub 安装：
 
 ```bash
-dsh plugin --profile desktop add github:<your-name>/dsh-bg-panel
+dsh plugin --profile desktop add github:theroi/dsh-bg-panel
 ```
 
 安装后**重启 DSH**，侧栏出现「个性化」入口。
