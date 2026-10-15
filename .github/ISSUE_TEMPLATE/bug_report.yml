@@ -1,0 +1,92 @@
+name: 🐛 Bug 报告（Bug report）
+description: 面板出问题时用它 —— 报错请贴原文，别只写「报错了」
+title: '[Bug] '
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢来报 Bug！填得越具体，修得越快。
+
+        **提交前请先确认两件事**：
+        1. 已经**重启过 DSH**（宿主只在启动时加载，客户端 bundle 带指纹 —— 不重启可能是在对着旧代码调）
+        2. 已经看过 [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md) 的「三条踩坑提醒」
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 现象
+      description: 发生了什么？期望发生什么？尽量一句话说清。
+      placeholder: |
+        例如：点「裁剪」按钮后，面板变白，控制台报 ReferenceError。
+        期望：应该打开裁剪器。
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 按顺序写清怎么走到这个 Bug，最好每次都能复现。
+      placeholder: |
+        1. 打开 DSH，点侧边栏「个性化」
+        2. 点「导入」，选一张 PNG
+        3. 点「裁剪 / 拖动位置」
+        4. —— 面板变白
+    validations:
+      required: true
+
+  - type: input
+    id: dsh-version
+    attributes:
+      label: DSH 版本
+      description: 在哪能看到？DSH 的「关于」/ 启动日志，或者插件目录名里的版本号。
+      placeholder: 例如：DSH 1.2.3 + dsh-bg-panel 0.7.2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: 操作系统
+      description: 测试里有平台相关逻辑，这个信息很有用。
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - 其他（请在「补充说明」里写明）
+    validations:
+      required: true
+
+  - type: textarea
+    id: console-error
+    attributes:
+      label: 控制台报错原文
+      description: |
+        按 F12 打开开发者工具 → Console，把**红色报错的原文**整段粘过来（含报错类型、消息、文件与行号，有堆栈更好）。
+        **不要只写「报错了」或自己转述** —— 原文里的类型名和行号往往就是定位的关键。
+        没有报错也请写一句「控制台无报错」。
+      render: text
+      placeholder: |
+        ReferenceError: vDis is not defined
+            at BgMain (client.js:1234:56)
+            at ...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: restarted
+    attributes:
+      label: 是否已重启 DSH
+      description: 宿主 `index.js` 只在 DSH 启动时加载一次，客户端 bundle 也带指纹缓存 —— 没重启的话，看到的可能还是旧代码。
+      options:
+        - label: 我已经重启过 DSH，问题仍然存在
+          required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充说明（可选）
+      description: 截图、录屏、`~/.dsh/bg-panel/config.json` 内容、三套测试的输出等，都可以放这里。
+    validations:
+      required: false

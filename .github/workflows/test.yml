@@ -1,0 +1,56 @@
+name: test
+
+# 触发：推送到 main，以及所有 PR（含 draft —— PR 里发现问题越早越好）
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# 同一分支连推多次时取消上一次还没跑完的任务，省 runner
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: node 20 / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      # 一个平台挂了也要看另一个平台的结果，方便区分「真的坏」还是「平台差异」
+      fail-fast: false
+      matrix:
+        # 测试里有 Windows 路径相关逻辑（path.join / path.dirname 比对、反斜杠数据），
+        # 两边都跑更有价值：本仓库主要在 Windows 上开发，Linux 用来兜住路径分隔符与大小写的坑。
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+
+      - name: 安装 Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 三套测试零依赖 —— 只用 node: 内置模块（fs / path / vm / http / url），
+      # 所以没有 npm install 这一步；也没有缓存要配。
+
+      - name: 宿主路由测试（29 项）
+        # 把 index.js 里 apply() 注册的 5 条路由挂到真 http 服务器上跑：
+        # 上传 / 列清单 / 取文件（含 Range，视频拖动靠它）/ 保存配置（字段白名单 + 数值夹取）/
+        # 删除 / 信任栅栏（跨站写 403、伪造 Host 403）/ 路径穿越 / 非白名单扩展名。
+        run: node tests/test-host.mjs
+
+      - name: 客户端产物契约（6 项）
+        # 在 vm 里加载 client.js，抓 window.__ModuleLoader__.load 的入参，再调 factory 验接口形状：
+        # id 是否等于包名、是否只从模块表取 react、inject 是否声明 slots、apply 是否为函数。
+        # 不碰 DOM、不渲染 —— 它能过而渲染台仍可能挂，两者不互相替代。
+        run: node tests/test-client-contract.mjs
+
+      - name: 渲染台（50 项）
+        # 真渲染：vm 里跑 client.js（自带迷你 window / document / fetch / Image / 定时器），
+        # 用迷你 React 把 BgMain 与 SidebarEntry 渲染成 h(...) 树，递归把 props 里所有 on*
+        # 回调真调一遍，再覆盖多种配置 / 主题 / 历史状态各渲染一遍。
+        # 防的是 node --check 与契约测试都抓不到的：跨作用域 ReferenceError、
+        # 渲染期同步异常、事件回调崩溃、applyLayer() 崩溃。
+        run: node tests/test-render.mjs
